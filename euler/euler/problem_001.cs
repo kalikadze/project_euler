@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Diagnostics;
 
 namespace euler
 {
@@ -10,6 +8,9 @@ namespace euler
     {
         public problem_001()
         {
+            Stopwatch sw = new Stopwatch();
+            sw.Start();
+
             List<int> members = new List<int>();
             int sum = 0;
 
@@ -21,10 +22,12 @@ namespace euler
                     sum += i;
                 }
             }
-            Console.WriteLine("***************");
             Console.WriteLine("Problem 001");
             Console.WriteLine(sum);
-            Console.WriteLine("***************");
+            sw.Stop();
+            long ts = sw.ElapsedMilliseconds;
+            Console.WriteLine("Time elapsed: {0} ms", ts);
+            Console.WriteLine(Utils.sep);
         }
     }
 }
