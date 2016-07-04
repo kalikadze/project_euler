@@ -5,15 +5,11 @@ using System.Linq;
 
 namespace euler
 {
-    class DivPair
+    class DivStruct
     {
-        int num;
-        int count;
-
-        public DivPair(int n, int c)
+        public DivStruct(int maxdivisor)
         {
-            this.num = n;
-            this.count = c;
+            int[] divisors = new int[maxdivisor];
         }        
     }
 
@@ -21,23 +17,22 @@ namespace euler
     {
         public problem_005()
         {
+            int max_numbers = 20;
             long result = 0;
-            List<DivPair> dp = new List<DivPair>();
+            List<DivStruct> dp = new List<DivStruct>(max_numbers);
             Stopwatch sw = new Stopwatch();
             sw.Start();
                         
             for (int i = 1; i < 21; i++)
             {
                 if (Utils.isPrime(i))
-                    dp.Add(new DivPair(i, 0));
+                    //dp.Add(new DivStruct(i, 0));
 
                 for (int j = 1; j < i; j++)
                 {
                     //if (i % j == 0)
                 }
             }
-
-
 
             Console.WriteLine("Problem 005");
             Console.WriteLine(result);
