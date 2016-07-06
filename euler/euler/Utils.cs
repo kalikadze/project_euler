@@ -25,6 +25,20 @@ namespace euler
             return true;
         }
 
+        public static int getDiv(long x, long orig, int[,] matrix)
+        {
+            for (int i = 2; i <= x; i++)
+            {
+                if (x % i == 0)
+                {
+                    matrix[orig, i]++;
+                    getDiv(x / i, orig, matrix);
+                    return i;
+                }
+            }
+            return -1;
+        }
+
         /// <summary>
         /// Check if string argument is palindrome
         /// </summary>
