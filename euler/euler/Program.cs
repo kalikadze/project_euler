@@ -25,6 +25,16 @@ namespace euler
             problem_004 p004 = new problem_004();
             // 005
             problem_005 p005 = new problem_005();
+            // 006
+            problem_006 p006 = new problem_006();
+            // 007
+            problem_007 p007 = new problem_007();
+            // 008
+            problem_008 p008 = new problem_008();
+            // 009
+            problem_009 p009 = new problem_009();
+            // 010
+            problem_010 p010 = new problem_010();
             /****************************************/
             sw.Stop();
             long ts = sw.ElapsedMilliseconds;

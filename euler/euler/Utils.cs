@@ -25,6 +25,13 @@ namespace euler
             return true;
         }
 
+        /// <summary>
+        /// get prime divisors from inserted number
+        /// </summary>
+        /// <param name="x">get prime divisor for this number</param>
+        /// <param name="orig">same as x (original number)</param>
+        /// <param name="matrix">matrix for storing results (2d array, there are stored prime divisors and their count</param>
+        /// <returns></returns>
         public static int getDiv(long x, long orig, int[,] matrix)
         {
             for (int i = 2; i <= x; i++)
