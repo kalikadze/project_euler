@@ -34,7 +34,9 @@ namespace euler
             // 009
             problem_009 p009 = new problem_009();
             // 010
-            problem_010 p010 = new problem_010();
+            //problem_010 p010 = new problem_010();
+            // 011
+            problem_017 p017 = new problem_017();
             /****************************************/
             sw.Stop();
             long ts = sw.ElapsedMilliseconds;
