@@ -40,6 +40,11 @@ namespace euler
                 {
                     resString = basic[adiv] + "hundred";
                 }
+                if (i == 2 && big && amod == 10)
+                {
+                    resString = basic[adiv] + "hundredandten";
+                    break;
+                }
                 if (i == 1)
                 {
                     if (num > 19)
@@ -84,7 +89,8 @@ namespace euler
             Stopwatch sw = new Stopwatch();
             sw.Start();
 
-            sumNum(110);
+            string temp = sumNum(110);
+
             for (int i = 1; i < 1001; i++)
             {
                 string tempy = sumNum(i);

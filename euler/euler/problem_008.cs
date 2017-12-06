@@ -17,7 +17,7 @@ namespace euler
             Stopwatch sw = new Stopwatch();
             sw.Start();
 
-            using (TextReader reader = File.OpenText(@"D:\ffwtwn\PROJECTS\euler_restart\Project_Euler\euler\euler\problem_008.in"))
+            using (TextReader reader = File.OpenText(@"d:\PROJECTS\Project_Euler\euler\euler\problem_008.in"))
             {
                 numbers = reader.ReadToEnd();
             }

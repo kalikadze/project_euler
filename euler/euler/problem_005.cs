@@ -22,7 +22,7 @@ namespace euler
                 if (Utils.isPrime(i))
                     divMat[i, i]++;
                 else
-                    Utils.getDiv(i, i, divMat);
+                    Utils.getPrimeDiv(i, i, divMat);
             }
 
             for (int i = 2; i < 22; i++)
