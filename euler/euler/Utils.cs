@@ -163,19 +163,74 @@ namespace euler
             return count;
         }
 
+        public static int addCharsToInt(char a, char b, int Carry)
+        {
+            return (int.Parse(a.ToString()) + int.Parse(b.ToString()) + Carry);
+        }
+
         public static string bigsum(string a, string b)
         {
             int pnta, pntb;
             int maxlen;
+            int carry = 0;
+            int resultSize = 1000;
+            char[] result = new char[resultSize];
+            string resString = "";
+            int resdig = 0;
+            int offs;
+            int i = 0;
 
-            if (a.Length > b.Length)
-                maxlen = a.Length;
+            // I want 'A string longer
+            if (a.Length < b.Length)
+            {
+                string tmpy = a;
+                a = b;
+                b = tmpy;
+            }
+
+            offs = a.Length - b.Length;
+            maxlen = a.Length;
+            carry = 0;
+            char bArg;
+            i = -1;
+
+            for (pnta = maxlen - 1; pnta > -1; pnta--)
+            {
+                i++;
+
+                if (i < b.Length)
+                    bArg = b[pnta - offs];
+                else
+                    bArg = '0';
+
+                resdig = addCharsToInt(a[pnta], bArg, carry);
+                if (resdig > 9)
+                {
+                    carry = 1;
+                    result[i] = Convert.ToChar(resdig % 10);
+                }
+                else
+                {
+                    carry = 0;
+                    result[i] = Convert.ToChar(resdig);
+                }
+            }
+
+            if (carry == 0)
+                result[i] = Convert.ToChar(resdig);
             else
-                maxlen = b.Length;
+            {
+                result[i] = Convert.ToChar(resdig % 10);
+                result[i + 1] = Convert.ToChar(resdig / 10);
+                i++;
+            }
 
-            for ()
+            for (int j = i; j >= 0; j--)
+            {
+                resString += (int)result[j];
+            }
 
-            return null; // indicate problem
+            return resString.Substring(0, i + 1);
         }
     }
 }

@@ -8,6 +8,13 @@ namespace euler
     {
         public problem_014()
         {
+
+            /*****************/
+
+            string res = Utils.bigsum("5689", "54654");
+
+            /*****************/
+
             Stopwatch sw = new Stopwatch();
             sw.Start();
 
