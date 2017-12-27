@@ -54,7 +54,9 @@
     <Compile Include="problem_011.cs" />
     <Compile Include="problem_012.cs" />
     <Compile Include="problem_014.cs" />
+    <Compile Include="problem_015.cs" />
     <Compile Include="problem_017.cs" />
+    <Compile Include="problem_018.cs" />
     <Compile Include="problem_025.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -65,6 +67,8 @@
     <None Include="problem_008.in" />
     <None Include="problem_011.in" />
     <None Include="problem_013.in" />
+    <None Include="problem_018.in" />
+    <None Include="problem_067.in" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="problem_013.py" />

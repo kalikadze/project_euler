@@ -170,7 +170,7 @@ namespace euler
 
         public static string bigsum(string a, string b)
         {
-            int pnta, pntb;
+            int pnta;
             int maxlen;
             int carry = 0;
             int resultSize = 1000;
@@ -180,7 +180,7 @@ namespace euler
             int offs;
             int i = 0;
 
-            // I want 'A string longer
+            // I want A string longer
             if (a.Length < b.Length)
             {
                 string tmpy = a;
@@ -231,6 +231,12 @@ namespace euler
             }
 
             return resString.Substring(0, i + 1);
+        }
+
+        public static string bigMply(string a, string b)
+        {
+
+            return "";
         }
     }
 }
