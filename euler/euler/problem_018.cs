@@ -17,14 +17,17 @@ namespace euler
         /// <returns>-1 - error, 0 - end, 1 - left, 2 - right</returns>
         int weight(int x, int y, List<List<int>> data)
         {
-            if (y == data.Count)
+            int sum = 0;
+            int yy = 0;
+            for (int n = y; n < data.Count; n++)
             {
-                return 0;
+                yy++;
+                for (int m = x; m < x + yy; m++)
+                {
+                    sum += data[n][m];
+                }
             }
-            else
-            {
-                return data[y][x] + /weight(x, y + 1, data) + weight(x + 1, y + 1, data);            
-            }
+            return sum;
         }
 
         public problem_018()
@@ -33,6 +36,7 @@ namespace euler
             List<int> linenum = new List<int>();
             List<List<int>> nums = new List<List<int>>();
             int Sum = 0;
+            int x = 0, y = 0;
 
             using (StreamReader r = new StreamReader(f))
             {
@@ -47,20 +51,24 @@ namespace euler
             Stopwatch sw = new Stopwatch();
             sw.Start();
 
-            Sum = nums[0][0];
+            Sum = nums[x][y];
 
             for (int i = 0; i < nums.Count - 1; i++)
             {
-                int left = weight(i, i + 1, nums);
-                int right = weight(i + 1, i + 1, nums);
+                int strom = weight(0, 0, nums);
+                int left = weight(x, y + 1, nums);
+                int right = weight(x + 1, y + 1, nums);
 
                 if ( left > right)
                 {
-                    Sum += nums[i + 1][i];
+                    y++;
+                    Sum += nums[y][x];
                 }
                 else
                 {
-                    Sum += nums[i + 1][i + 1];
+                    x++;
+                    y++;
+                    Sum += nums[y][x];
                 }
             }
 
