@@ -168,6 +168,11 @@ namespace euler
             return (int.Parse(a.ToString()) + int.Parse(b.ToString()) + Carry);
         }
 
+        public static int mplCharsToInt(char a, char b, int Carry)
+        {
+            return (int.Parse(a.ToString()) * int.Parse(b.ToString()) + Carry);
+        }
+
         public static string bigsum(string a, string b)
         {
             int pnta;
@@ -235,8 +240,46 @@ namespace euler
 
         public static string bigMply(string a, string b)
         {
+            List<string> toSum = new List<string>();
+            string result = "";
+            int digit = 0;
+            int carry = 0;
+            string suffix = "";
 
-            return "";
+            for (int i = a.Length - 1; i > -1; i--)
+            {
+                result = "";
+                if (i < a.Length - 1)
+                    suffix += "0";
+
+                for (int j = b.Length - 1; j > -1; j--)
+                {
+                    digit = mplCharsToInt(a[i], b[j], carry);
+                    result += Convert.ToChar(digit % 10 + 48);
+                    if (j > 0)
+                        carry = digit / 10;
+                    else
+                    {
+                        carry = 0;
+                        result += Convert.ToChar(digit / 10 + 48);
+                        // reverse direction
+                        char[] rightArray = result.ToCharArray();
+                        Array.Reverse(rightArray);
+                        string reverseResult = new string(rightArray);
+                        // add zero based on I
+                        reverseResult += suffix;
+                        // add to list
+                        toSum.Add(reverseResult);
+                    }
+                }
+            }
+
+            for (int i = 1; i < toSum.Count; i++)
+            {
+                toSum[i] = bigsum(toSum[i], toSum[i - 1]);
+            }
+
+            return toSum[toSum.Count - 1];
         }
     }
 }

@@ -10,6 +10,7 @@ namespace euler
     {
         public problem_015()
         {
+            // TODO make a code
             Stopwatch sw = new Stopwatch();
             sw.Start();
 
