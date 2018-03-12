@@ -25,11 +25,11 @@ namespace euler
             return true;
         }
 
-       /// <summary>
-       /// get list of divisors of number
-       /// </summary>
-       /// <param name="x"></param>
-       /// <returns></returns>
+        /// <summary>
+        /// get count of divisors of number
+        /// </summary>
+        /// <param name="x"></param>
+        /// <returns></returns>
         public static int getDiv(long x)
         {
             //List<int> divs = new List<int>();
@@ -40,6 +40,30 @@ namespace euler
                     divCount++;
             }
             return divCount;
+        }
+
+        /// <summary>
+        /// get count of divisors of number
+        /// </summary>
+        /// <param name="x"></param>
+        /// <returns></returns>
+        public static List<long> getDivList(long x)
+        {
+            List<long> divs = new List<long>();
+            int divCount = 0;
+            for (long i = 1; i <=Math.Sqrt(x); i++)
+            {
+                if (x % i == 0)
+                {
+                    divCount++;
+                    divs.Add(i);
+                    long rest = x / i;
+                    if (!divs.Contains(rest))
+                    divs.Add(rest);
+                }
+            }
+            divs.Sort();
+            return divs;
         }
 
         /// <summary>
