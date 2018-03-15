@@ -10,21 +10,30 @@ namespace euler
     {
         public problem_022()
         {
-            string f = @"..\..\problem_022.in";
-            List<int> linenum = new List<int>();
-            List<List<int>> nums = new List<List<int>>();
-            List<List<int>> sumnums;
+            string f = @"..\..\problem_022.txt";
+            List<string> names = new List<string>();
+            long sumname = 0;
+            long sumnames = 0;
 
-            using (StreamReader r = new StreamReader(f))
+            long ascii_ofs = 64;
+
+            StreamReader r = new StreamReader(f);
+            string line;
+            line = r.ReadLine();
+            names = line.Split(',').ToList();
+            names = names.OrderBy(a => a).ToList();
+
+            for (int i = 0; i < names.Count; i++)
             {
-                string line;
-                while ((line = r.ReadLine()) != "END")
-                {
-                    linenum = Array.ConvertAll<string, int>(line.Split(' '), int.Parse).ToList();
-                    nums.Add(linenum);
-                }
-            }
+                names[i] = names[i].Trim('\"',' ');
 
+                for (int j = 0; j < names[i].Length; j++)
+                {
+                    sumname += names[i][j] - ascii_ofs; 
+                }
+                sumnames += sumname * (i + 1);
+                sumname = 0;
+            }
         }
     }
 }

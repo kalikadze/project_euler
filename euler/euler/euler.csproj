@@ -73,10 +73,11 @@
     <None Include="problem_011.in" />
     <None Include="problem_013.in" />
     <None Include="problem_018.in" />
-    <Content Include="problem_067.txt" />
+    <None Include="problem_067.in" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="problem_013.py" />
+    <Content Include="problem_022.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
