@@ -305,5 +305,17 @@ namespace euler
 
             return toSum[toSum.Count - 1];
         }
+
+        public static bool isAbundant(int x)
+        {
+            List<long> divlist = getDivList(x);
+            divlist.RemoveAt(divlist.Count - 1);
+            long sum = divlist.Take(divlist.Count).Sum();
+
+            if (sum > x)
+                return true;
+            else
+                return false;
+        }
     }
 }
