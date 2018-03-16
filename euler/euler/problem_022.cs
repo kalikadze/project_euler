@@ -17,6 +17,11 @@ namespace euler
 
             long ascii_ofs = 64;
 
+
+            Stopwatch sw = new Stopwatch();
+            sw.Start();
+
+
             StreamReader r = new StreamReader(f);
             string line;
             line = r.ReadLine();
@@ -31,9 +36,16 @@ namespace euler
                 {
                     sumname += names[i][j] - ascii_ofs; 
                 }
-                sumnames += sumname * (i + 1);
+                sumnames += sumname * (i+1);
                 sumname = 0;
             }
+
+            Console.WriteLine("Problem 022");
+            Console.WriteLine(sumnames);
+            sw.Stop();
+            long ts = sw.ElapsedMilliseconds;
+            Console.WriteLine("Time elapsed: {0} ms", ts);
+            Console.WriteLine(Utils.sep);
         }
     }
 }
