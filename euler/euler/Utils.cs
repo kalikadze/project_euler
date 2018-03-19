@@ -317,5 +317,138 @@ namespace euler
             else
                 return false;
         }
+
+        public static void swap(ref int a, ref int b)
+        {
+            int tempy = a;
+            a = b;
+            b = tempy;
+        }
+
+        public static void printArr(int[] arr, int n)
+        {
+            for (int i = 0; i < arr.Length; i++)
+            {
+                Console.Write(arr[i] + " ");
+            }
+            Console.Write('\n');
+        }
+
+        public static void heapPermutation(int[] a, int size, int n, bool print = false)
+        {
+            /*
+            1. The algorithm generates (n-1)! permutations of the first n-1 elements, adjoining the last element to each of these. This will generate all of the permutations that end with the last element.
+            2. If n is odd, swap the first and last element and if n is even, then swap the ith element (i is the counter starting from 0) and the last element and repeat the above algorithm till i is less than n.
+            3. In each iteration, the algorithm will produce all the permutations that end with the current last element.
+            */
+
+            // https://www.geeksforgeeks.org/heaps-algorithm-for-generating-permutations/
+            // Generating permutation using Heap Algorithm
+
+            // if arr of size = 1; nothing to do 
+            if (size == 1)
+                printArr(a, n);
+
+            for (int i = 0; i < size; i++ )
+            {
+                heapPermutation(a, size - 1, n, true);
+
+                // if size is odd
+                // swap 0-th for last
+                if (size % 2 == 1)
+                    swap(ref a[0], ref a[size - 1]);
+
+                // if even
+                // swap i-th for a last
+                else
+                    swap(ref a[i], ref a[size - 1]);
+            }
+        }
+
+        /// <summary>
+        /// auxialiary function for list of lexicographic order of permutations
+        /// get position of mostright character which is smaller then next right character
+        /// </summary>
+        /// <param name="a"></param>
+        /// <returns></returns>
+        public static int getPosFirst(int[] a)
+        {
+            int index = -1;
+
+            for (int i = a.Length - 1; i > 0; i--)
+            {
+                if (a[i - 1] < a[i])
+                {
+                    index = i - 1;
+                    break;
+                }                    
+            }
+
+            return index;
+        }
+
+        /// <summary>
+        /// auxialiary function for list of lexicographic order of permutations
+        /// </summary>
+        /// <param name="a"></param>
+        /// <param name="firstCharIndex"></param>
+        /// <returns></returns>
+        public static int getCeilingPos(int[] a, int firstCharIndex)
+        {
+            int index = -1;
+            int min = int.MaxValue;
+
+            for (int i = firstCharIndex + 1; i < a.Length; i++)
+            {
+                if (a[i] > a[firstCharIndex] && a[i] < min)
+                {
+                    min = a[i];
+                    index = i;
+                }
+            }
+
+            return index;
+        }
+
+        /// <summary>
+        /// get list of permutations in lexicographic order
+        /// </summary>
+        /// <param name="a"></param>
+        /// <param name="print"></param>
+        public static void lexicoPermutation(int[] a, bool print = false )
+        {
+            /*
+            1.Take the previously printed permutation and find the rightmost character in it, which is smaller than its next character. Let us call this character as ‘first character’.
+            2.Now find the ceiling of the ‘first character’. Ceiling is the smallest character on right of ‘first character’, which is greater than ‘first character’. Let us call the ceil character as ‘second character’.
+            3.Swap the two characters found in above 2 steps.
+            4.Sort the substring (in non - decreasing order) after the original index of ‘first character’.
+            */
+
+            int iter = 0;
+            bool finished = false;
+            int firstCharPos = 0;
+            int secondCharPos = 0;
+
+            Array.Sort(a);
+
+            while(!finished)
+            {
+                iter++;
+                if (print || iter == 1000000)
+                    printArr(a, a.Length);
+
+                firstCharPos = Utils.getPosFirst(a);
+                if (firstCharPos == -1)
+                    finished = true;
+                else
+                {
+                    secondCharPos = getCeilingPos(a, firstCharPos);
+                    swap(ref a[firstCharPos], ref a[secondCharPos]);
+                }
+
+                if (firstCharPos + 1 < a.Length - 1)
+                    Array.Sort(a, firstCharPos + 1, a.Length - 1 - firstCharPos);
+            }
+        }
     }
 }
