@@ -62,9 +62,11 @@ namespace euler
             // 023
             //problem_023 p023 = new problem_023();
             // 024
-            problem_024 p024 = new problem_024();
+            //problem_024 p024 = new problem_024();
             // 025
             //problem_025 p025 = new problem_025();
+            // 028
+            problem_028 p028 = new problem_028();
             /****************************************/
             sw.Stop();
             long ts = sw.ElapsedMilliseconds;
