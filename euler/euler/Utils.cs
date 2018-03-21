@@ -450,5 +450,26 @@ namespace euler
                     Array.Sort(a, firstCharPos + 1, a.Length - 1 - firstCharPos);
             }
         }
+
+        public static string binaryString(int dec)
+        {
+            int zv;
+            List<char> binlist = new List<char>();
+            string binstring = "";
+
+            do
+            {
+                zv = dec % 2;
+                dec = dec / 2;
+
+                binstring += zv.ToString();
+
+
+            } while (dec != 0);
+
+            char[] s = binstring.ToCharArray();
+            Array.Reverse(s);
+            return new string(s);   
+        }
     }
 }
