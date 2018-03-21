@@ -9,36 +9,50 @@ namespace euler
     class problem_028
     {
 
-        void fill(ref int[,] m, ref int x, ref int y, ref int i, ref int dir)
+        void fill(ref int[,] m, ref int x, ref int y, ref int i, ref int dir, ref int olddir, ref int call, ref int length, int dim)
         {
-            int length = (i + 2) / 2;
+            if (call % 2 == 0)
+                length++;
+            if (call == 2)
+                call = 0;
+
+
             for (int j = 0; j < length; j++)
             {
                 if (j > 0)
                     i++;
 
-                m[x, y] = i + 1;
-
+                if (i == dim * dim - 1)
+                    return;
 
                 if (dir == 1)
                     x++;
+
                 if (dir == 2)
                     y--;
+
                 if (dir == 3)
                     x--;
+
                 if (dir == 4)
                     y++;
 
+                m[x, y] = i + 2;
             }
         }
 
         public problem_028()
         {
-            const int dim = 5;
+            const int dim = 1001;
             int[,] matrix = new int[dim, dim];
-            int x = 2;
-            int y = 2;
+            int x = 500;
+            int y = 500;
             int dir = 0;
+            int olddir = -1;
+            int call = 0;
+            int length = 0;
+            int sum = 0;
+            matrix[x, y] = 1;
             
             Stopwatch sw = new Stopwatch();
             sw.Start();
@@ -47,17 +61,25 @@ namespace euler
             for (int i = 0; i < dim * dim; i++)
             {
                 dir++;
-                fill(ref matrix, ref x, ref y, ref i, ref dir);
+                fill(ref matrix, ref x, ref y, ref i, ref dir, ref olddir, ref call, ref length, dim);
+                call++;
+
                 if (dir == 4)
                 {
                     dir = 0;
-                    y--;
-                    x++;
                 }
             }
 
+            // sum diagonals
+            for (int i = 0; i < dim; i++)
+            {
+                sum += matrix[i, i];
+                sum += matrix[i, dim - i - 1];
+            }
+            sum--;
+
             Console.WriteLine("Problem 028");
-            Console.WriteLine();
+            Console.WriteLine(sum);
             sw.Stop();
             long ts = sw.ElapsedMilliseconds;
             Console.WriteLine("Time elapsed: {0} ms", ts);
