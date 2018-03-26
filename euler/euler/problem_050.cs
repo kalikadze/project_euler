@@ -27,15 +27,12 @@ namespace euler
                     primes.Add(i);
             }
 
-            //allprimsum = primes.Sum(ind => (int)ind);
-            //sum = allprimsum;
-
+            allprimsum = primes.Take((int)primes.Count).Sum();
 
             for (long i = primes.Count - 1; i > -1; i--)
             {
-                sum = 0;
-                for (long k = i; k > -1; k--)
-                    sum += primes[(int)k];
+                allprimsum = allprimsum - primes[(int)i];
+                sum = allprimsum;
 
                 if (sum > border)
                     continue;
