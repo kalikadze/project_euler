@@ -325,7 +325,7 @@ namespace euler
             b = tempy;
         }
 
-        public static void printArr(int[] arr, int n)
+        public static void printArr(int[] arr)
         {
             for (int i = 0; i < arr.Length; i++)
             {
@@ -334,7 +334,7 @@ namespace euler
             Console.Write('\n');
         }
 
-        public static void heapPermutation(int[] a, int size, int n, bool print = false)
+        public static void heapPermutation(int[] a, int size, ref List<int> list, bool print = false)
         {
             /*
             1. The algorithm generates (n-1)! permutations of the first n-1 elements, adjoining the last element to each of these. This will generate all of the permutations that end with the last element.
@@ -346,12 +346,25 @@ namespace euler
             // Generating permutation using Heap Algorithm
 
             // if arr of size = 1; nothing to do 
+
+            List<int> ret = new List<int>();
+
             if (size == 1)
-                printArr(a, n);
+            {
+                if (print)
+                    printArr(a);
+
+                int record = 0;
+                for (int i = 0; i < a.Length; i++)
+                {
+                    record += (int)Math.Pow(10, i) * a[i];
+                }
+                list.Add(record);
+            }
 
             for (int i = 0; i < size; i++ )
             {
-                heapPermutation(a, size - 1, n, true);
+                heapPermutation(a, size - 1, ref list, print);
 
                 // if size is odd
                 // swap 0-th for last
@@ -435,7 +448,7 @@ namespace euler
             {
                 iter++;
                 if (print || iter == 1000000)
-                    printArr(a, a.Length);
+                    printArr(a);
 
                 firstCharPos = Utils.getPosFirst(a);
                 if (firstCharPos == -1)
