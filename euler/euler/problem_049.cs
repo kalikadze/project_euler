@@ -14,6 +14,9 @@ namespace euler
             List<int> primes = new List<int>();
             List<int> permuts = new List<int>();
             List<int> primePermuts = new List<int>();
+            List<int> targets = new List<int>();
+            List<int> searched = new List<int>();
+
 
             int[] arr = new int[4];
 
@@ -52,19 +55,41 @@ namespace euler
 
                 if (primePermuts.Count >= 3)
                 {
+                    primePermuts.Sort();
                     // there is need to check for increasing sequence made of three of those numbers
 
-
-
+                    for (int k = 0; k < primePermuts.Count; k++)
+                    {
+                        for (int l = k; l < primePermuts.Count; l++)
+                        {
+                            int delta = primePermuts[l] - primePermuts[k];
+                            if (delta != 0)
+                            {
+                                for (int m = k; m < primePermuts.Count; m++)
+                                {
+                                    if (primePermuts.Contains(primePermuts[m]) && primePermuts.Contains(primePermuts[m] + (1 * delta)) && primePermuts.Contains(primePermuts[m] + (2 * delta)))
+                                    {
+                                        targets.Add(primePermuts[m] + (0 * delta));
+                                        targets.Add(primePermuts[m] + (1 * delta));
+                                        targets.Add(primePermuts[m] + (2 * delta));
+                                    }
+                                }
+                                if (targets.Count < 3)
+                                    targets.Clear();
+                                else
+                                {
+                                    for (int n = 0; n < targets.Count; n++)
+                                        searched.Add(targets[n]);
+                                    targets.Clear();
+                                }
+                            }
+                        }
+                    }
                     //break;
                 }                    
-                else
-                    primePermuts.Clear();
-
+                primePermuts.Clear();
+                searched = searched.Distinct().ToList();
             }
-
-
-
 
             Console.WriteLine("Problem 050");
             Console.WriteLine(sum);
