@@ -68,7 +68,9 @@ namespace euler
             // 028
             //problem_028 p028 = new problem_028();
             // 029
-            problem_029 p029 = new problem_029();
+            //problem_029 p029 = new problem_029();
+            // 030
+            problem_030 p030 = new problem_030();
             // 036
             //problem_036 p036 = new problem_036();
             // 049
