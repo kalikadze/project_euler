@@ -70,9 +70,11 @@ namespace euler
             // 029
             //problem_029 p029 = new problem_029();
             // 030
-            problem_030 p030 = new problem_030();
+            //problem_030 p030 = new problem_030();
             // 036
             //problem_036 p036 = new problem_036();
+            // 047
+            problem_047 p047 = new problem_047();
             // 049
             //problem_049 p049 = new problem_049();
             // 050

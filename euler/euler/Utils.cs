@@ -66,6 +66,26 @@ namespace euler
             return divs;
         }
 
+        public static List<long> getPrimeDivList(long x)
+        {
+            List<long> divs = new List<long>();
+            int divCount = 0;
+            for (long i = 1; i <= Math.Sqrt(x); i++)
+            {
+                if (x % i == 0)
+                {
+                    divCount++;
+                    if (isPrime(i) && i != 1)
+                        divs.Add(i);
+                    long rest = x / i;
+                    if (!divs.Contains(rest) && isPrime(rest) && i != 1)
+                        divs.Add(rest);
+                }
+            }
+            divs.Sort();
+            return divs;
+        }
+
         /// <summary>
         /// get prime divisors from inserted number
         /// </summary>
