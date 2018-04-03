@@ -71,10 +71,12 @@ namespace euler
             //problem_029 p029 = new problem_029();
             // 030
             //problem_030 p030 = new problem_030();
+            // 031
+            problem_031 p031 = new problem_031();
             // 036
             //problem_036 p036 = new problem_036();
-            // 037
-            problem_039 p039 = new problem_039();
+            // 039
+            //problem_039 p039 = new problem_039();
             // 047
             //problem_047 p047 = new problem_047();
             // 049
