@@ -10,8 +10,21 @@ namespace euler
     {
         public problem_059()
         {
+            string f = @"..\..\problem_059_cipher.in";
+
             Stopwatch sw = new Stopwatch();
             sw.Start();
+
+            using (StreamReader r = new StreamReader(f))
+            {
+                string line;
+                while ((line = r.ReadLine()) != "END")
+                {
+                    linenum = Array.ConvertAll<string, int>(line.Split(' '), int.Parse).ToList();
+                    nums.Add(linenum);
+                }
+            }
+
 
 
             Console.WriteLine("Problem 059");
