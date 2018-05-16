@@ -90,7 +90,7 @@
   <ItemGroup>
     <Content Include="problem_013.py" />
     <Content Include="problem_022.txt" />
-    <Content Include="problem_059_cipher.txt" />
+    <None Include="problem_059_cipher.in" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
