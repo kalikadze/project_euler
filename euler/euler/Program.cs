@@ -73,6 +73,8 @@ namespace euler
             //problem_030 p030 = new problem_030();
             // 031
             //problem_031 p031 = new problem_031();
+            // 035
+            problem_035 p035 = new problem_035();
             // 036
             //problem_036 p036 = new problem_036();
             // 039
@@ -84,7 +86,7 @@ namespace euler
             // 050
             //problem_050 p050 = new problem_050();
             // 059
-            problem_059 p059 = new problem_059();
+            //problem_059 p059 = new problem_059();
             /****************************************/
             sw.Stop();
             long ts = sw.ElapsedMilliseconds;

@@ -9,7 +9,6 @@ namespace euler
     public static class Utils
     {
         public static string sep = "_____________________________";
-
         /// <summary>
         /// Check if argument is prime number
         /// </summary>
@@ -503,6 +502,19 @@ namespace euler
             char[] s = binstring.ToCharArray();
             Array.Reverse(s);
             return new string(s);   
+        }
+
+        public static string stringShift(string s)
+        {
+            string shifted;
+
+            if (s.Length > 1)
+            {
+                shifted = s.Substring(s.Length - 1, 1) + s.Substring(0, s.Length - 1);
+                return shifted;
+            }
+            else
+                return s;
         }
     }
 }
