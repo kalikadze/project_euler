@@ -503,7 +503,7 @@ namespace euler
             Array.Reverse(s);
             return new string(s);   
         }
-
+        
         public static string stringShift(string s)
         {
             string shifted;
@@ -515,6 +515,51 @@ namespace euler
             }
             else
                 return s;
+        }
+
+        /// <summary>
+        /// Check if given number is pandigital in given intervals.
+        /// </summary>
+        /// <param name="num">Given number</param>
+        /// <param name="start">Start index</param>
+        /// <param name="stop">Stop index</param>
+        /// <returns></returns>
+        public static bool isPandigital(long num, int start, int stop)
+        {
+            string numstr = num.ToString();
+            int[] record = new int[10] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
+
+            for (int i = 0; i < numstr.Length; i++)
+            {
+                for (int j = 0; j < 10; j++)
+                {
+                    if (int.Parse(numstr[i].ToString()) == j)
+                        record[j] += 1;
+                }
+            }
+
+            for (int i = start; i < stop + 1; i++)
+            {
+                if (record[i] != 1)
+                    return false;
+            }
+
+            return true;
+        }
+
+        /// <summary>
+        /// Method return alphabetical sum of given word
+        /// </summary>
+        /// <param name="word">Given word</param>
+        /// <returns></returns>
+        public static int sumWord(string word)
+        {
+            int sum = 0;
+            byte[] asciiBytes = Encoding.ASCII.GetBytes(word);
+            List<int> bytesAscii = asciiBytes.OfType<int>().ToList();
+
+            sum = bytesAscii.Take(bytesAscii.Count).Sum();
+            return sum;
         }
     }
 }
