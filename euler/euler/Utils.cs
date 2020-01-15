@@ -556,10 +556,33 @@ namespace euler
         {
             int sum = 0;
             byte[] asciiBytes = Encoding.ASCII.GetBytes(word);
-            List<int> bytesAscii = asciiBytes.OfType<int>().ToList();
+            List<int> bytesAscii = asciiBytes.Select((b) => (int)b).ToList();
+            bytesAscii = bytesAscii.Select(i => i - 64).ToList();
 
             sum = bytesAscii.Take(bytesAscii.Count).Sum();
             return sum;
+        }
+
+        public static bool isTriangle(int num)
+        {
+            // need to resolve simple quadratic equation
+            // at the first sight might be confusing due to some - signs, but its only optimalised 
+            // quadratic equation for this special case
+            double a = 1.0;
+            double b = 1.0;
+            double c = (2.0) * num;
+
+            double x1, x2;
+
+            x1 = ((-1.0 * b) + Math.Sqrt(b + 4.0 * c)) / 2.0; // valid
+            x2 = ((-1.0 * b) - Math.Sqrt(b + 4.0 * c)) / 2.0; // nonvalid
+
+            // test if root x1 is integer or not 
+            // more accurate test as standard: (x1%1)==0
+            if ((x1 % 1) <= (double.Epsilon * 100))
+                return true;
+            else
+                return false;
         }
     }
 }

@@ -88,6 +88,7 @@
     <None Include="problem_011.in" />
     <None Include="problem_013.in" />
     <None Include="problem_018.in" />
+    <None Include="problem_042.in" />
     <None Include="problem_067.in" />
   </ItemGroup>
   <ItemGroup>
