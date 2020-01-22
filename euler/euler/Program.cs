@@ -50,10 +50,11 @@ namespace euler
             //problem_041 p041 = new problem_041();
             //problem_042 p042 = new problem_042();
             //problem_047 p047 = new problem_047();
-            problem_048 p048 = new problem_048();
+            //problem_048 p048 = new problem_048();
             //problem_049 p049 = new problem_049();
             //problem_050 p050 = new problem_050();
             //problem_059 p059 = new problem_059();
+            problem_082 p082 = new problem_082();
             /****************************************/
             sw.Stop();
             long ts = sw.ElapsedMilliseconds;
