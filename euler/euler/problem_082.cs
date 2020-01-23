@@ -13,49 +13,96 @@ namespace euler
         public int minVal(int m, int n, int[,] mat)
         {
             int i, j;
+            int del = 10;
 
             int[,] subVal = new int[m + 1, n + 1];
 
             counter++;
             subVal[0, 0] = mat[0, 0];
-
-            Console.Clear();
+            printElement(mat, 0, 0, 0, 0, ConsoleColor.Yellow, del);
+            printElement(subVal, 0, 7, 0, 0, ConsoleColor.Yellow, del);
+            printElement(mat, 0, 0, 0, 0, ConsoleColor.Gray, del);
+            printElement(subVal, 0, 7, 0, 0, ConsoleColor.Gray, del);
 
             // first column of subVal array
             for (i = 1; i <= m; i++)
             {
                 subVal[i, 0] = subVal[i - 1, 0] + mat[i, 0];
-                printMatrix(mat, 0, 0);
-                Thread.Sleep(1000);
-                printMatrix(subVal, 0, 7);
-                Thread.Sleep(1000);
+                showCalc(mat, subVal, 0, 0, 0, 7, i, 0, ConsoleColor.Yellow, ConsoleColor.Gray, del, -1, 0);
             }
             // first row of subVal array
             for (j = 1; j <= n; j++)
             {
                 subVal[0, j] = subVal[0, j - 1] + mat[0, j];
-                printMatrix(mat, 0, 0);
-                Thread.Sleep(1000);
-                printMatrix(subVal, 0, 7);
-                Thread.Sleep(1000);
+                showCalc(mat, subVal, 0, 0, 0, 7, 0, j, ConsoleColor.Yellow, ConsoleColor.Gray, del, 0, -1);
             }
             // body of subVal array
             for (i = 1; i <= m; i++)
                 for (j = 1; j <= n; j++)
                 {
                     subVal[i, j] = Math.Min(subVal[i - 1, j], subVal[i, j - 1]) + mat[i, j];
-                    printMatrix(mat, 0, 0);
-                    Thread.Sleep(1000);
-                    printMatrix(subVal, 0, 7);
-                    Thread.Sleep(1000);
+                    showCalc(mat, subVal, 0, 0, 0, 7, i, j, ConsoleColor.Yellow, ConsoleColor.Gray, del, -1, -1);
                 }
+
+            // mark desired way
+            markPath(subVal, 0, 0);
+
             return subVal[m, n];
         }
 
-        public void printMatrix(int[,] mat, int startx, int starty)
+        public void markPath(int[,] mat, int x, int y)
         {
             int dimx = mat.GetLength(0);
             int dimy = mat.GetLength(1);
+
+            if (x == dimx - 1 || y == dimy - 1)
+                return;
+            else
+            {
+                if (mat[x, y + 1] < mat[x + 1, y])
+                {
+                    y++;
+                    printElement(mat, 0, 7, x, y, ConsoleColor.Green, 100);
+                    markPath(mat, x, y);
+                }
+                else
+                {
+                    x++;
+                    printElement(mat, 0, 7, x, y, ConsoleColor.Green, 100);
+                    markPath(mat, x, y);
+
+                }
+            }
+        }
+
+        public void showCalc(int[,] origMat, int[,] newMat, int startX_orig, int startY_orig, int startX_new, int startY_new, int x, int y, ConsoleColor sel, ConsoleColor col, int del, int xmove, int ymove)
+        {
+            printElement(origMat, startX_orig, startY_orig, x, y, sel, del);
+            printElement(newMat, startX_new, startY_new, x + xmove, y + ymove, sel, del);
+            printElement(newMat, startX_new, startY_new, x, y, sel, del);
+
+            printElement(origMat, startX_orig, startY_orig, x, y, col, del);
+            printElement(newMat, startX_new, startY_new, x + xmove, y + ymove, col, del);
+            printElement(newMat, startX_new, startY_new, x, y, col, del);
+        }
+
+        public void printElement(int[,] mat, int startx, int starty, int x, int y, ConsoleColor col, int wait)
+        {
+            int dimx = mat.GetLength(0);
+            int dimy = mat.GetLength(1);
+
+            Console.SetCursorPosition(startx + (x * dimx), starty + (y * 1));
+            Console.ForegroundColor = col;
+            Thread.Sleep(wait);
+            Console.Write(mat[x, y]);
+        }
+
+        public void printMatrix(int[,] mat, int startx, int starty, ConsoleColor col = ConsoleColor.Gray)
+        {
+            int dimx = mat.GetLength(0);
+            int dimy = mat.GetLength(1);
+            ConsoleColor remember = Console.ForegroundColor;
+            Console.ForegroundColor = col;
 
             for (int i = 0; i < dimx; i++)
                 for (int j = 0; j < dimy; j++)
@@ -63,6 +110,7 @@ namespace euler
                     Console.SetCursorPosition(startx + (i * 5), starty + (j * 1));
                     Console.Write(mat[i, j]);
                 }
+            Console.ForegroundColor = remember;
         }
 
         /// <summary>
@@ -112,6 +160,7 @@ namespace euler
             Stopwatch sw = new Stopwatch();
             sw.Start();
 
+            printMatrix(matrix, 0, 0);
             sum = minVal(matrixList.Count - 1, matrixList[0].Count - 1, matrix);
 
             Console.WriteLine("\n\nProblem 081");
@@ -120,8 +169,6 @@ namespace euler
             long ts = sw.ElapsedMilliseconds;
             Console.WriteLine("Time elapsed: {0} ms", ts);
             Console.WriteLine(Utils.sep);
-
-
         }
     }
 }
