@@ -13,7 +13,7 @@ namespace euler
         public int minVal(int m, int n, int[,] mat)
         {
             int i, j;
-            int del = 10;
+            int del = 500;
 
             int[,] subVal = new int[m + 1, n + 1];
 
@@ -45,7 +45,7 @@ namespace euler
                 }
 
             // mark desired way
-            markPath(subVal, 0, 0);
+            markPath(subVal, 4, 4);
 
             return subVal[m, n];
         }
@@ -56,23 +56,28 @@ namespace euler
             int dimy = mat.GetLength(1);
 
             if (x == dimx - 1 || y == dimy - 1)
+                printElement(mat, 0, 7, x, y, ConsoleColor.Green, 500);
+
+
+            if (x == 0 || y == 0)
                 return;
             else
             {
-                if (mat[x, y + 1] < mat[x + 1, y])
+                if (mat[x, y - 1] < mat[x - 1, y])
                 {
-                    y++;
-                    printElement(mat, 0, 7, x, y, ConsoleColor.Green, 100);
+                    y--;
+                    printElement(mat, 0, 7, x, y, ConsoleColor.Green, 500);
                     markPath(mat, x, y);
                 }
                 else
                 {
-                    x++;
-                    printElement(mat, 0, 7, x, y, ConsoleColor.Green, 100);
+                    x--;
+                    printElement(mat, 0, 7, x, y, ConsoleColor.Green, 500);
                     markPath(mat, x, y);
 
                 }
             }
+            printElement(mat, 0, 7, 0, 0, ConsoleColor.Green, 500);
         }
 
         public void showCalc(int[,] origMat, int[,] newMat, int startX_orig, int startY_orig, int startX_new, int startY_new, int x, int y, ConsoleColor sel, ConsoleColor col, int del, int xmove, int ymove)
@@ -131,7 +136,7 @@ namespace euler
                 cols = jaggedArray[i].Length;
                 for (int j = 0; j < cols; j++)
                 {
-                    array[i, j] = jaggedArray[i][j];
+                    array[i, j] = jaggedArray[j][i];
                 }
             }
             return array;
@@ -163,7 +168,8 @@ namespace euler
             printMatrix(matrix, 0, 0);
             sum = minVal(matrixList.Count - 1, matrixList[0].Count - 1, matrix);
 
-            Console.WriteLine("\n\nProblem 081");
+            Console.ForegroundColor = ConsoleColor.Gray;
+            Console.WriteLine("\n\n\n\n\n\n\n\n\nProblem 081");
             Console.WriteLine(sum);
             sw.Stop();
             long ts = sw.ElapsedMilliseconds;
