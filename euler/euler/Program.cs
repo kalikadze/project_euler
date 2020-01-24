@@ -29,7 +29,7 @@ namespace euler
             //problem_012 p012 = new problem_012();
             //in Python
             //problem_014 p014 = new problem_014();
-            //problem_015 p015 = new problem_015();
+            problem_015 p015 = new problem_015();
             //problem_016 p016 = new problem_016();
             //problem_017 p017 = new problem_017();
             //problem_018 p018 = new problem_018();
@@ -54,7 +54,7 @@ namespace euler
             //problem_049 p049 = new problem_049();
             //problem_050 p050 = new problem_050();
             //problem_059 p059 = new problem_059();
-            problem_082 p082 = new problem_082();
+            //problem_082 p082 = new problem_082();
             /****************************************/
             sw.Stop();
             long ts = sw.ElapsedMilliseconds;

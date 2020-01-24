@@ -74,7 +74,6 @@ namespace euler
                     x--;
                     printElement(mat, 0, 7, x, y, ConsoleColor.Green, 500);
                     markPath(mat, x, y);
-
                 }
             }
             printElement(mat, 0, 7, 0, 0, ConsoleColor.Green, 500);

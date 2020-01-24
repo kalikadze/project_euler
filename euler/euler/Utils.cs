@@ -9,6 +9,8 @@ namespace euler
 {
     public static class Utils
     {
+        static readonly int DegreeOfParallelism = Environment.ProcessorCount;
+
         public static string sep = "_____________________________";
         /// <summary>
         /// Check if argument is prime number
@@ -584,6 +586,42 @@ namespace euler
                 return true;
             else
                 return false;
+        }
+
+        public static BigInteger bigMultiplyBySteps(long stop, long start)
+        {
+            BigInteger result = 1;
+
+            for (var i = start; i <= stop; i += DegreeOfParallelism)
+                result *= i;
+
+            return result;
+        }
+
+        public static BigInteger Factorial(long x)
+        {
+            BigInteger finalResult = 1;
+
+            // Make as many parallel tasks as our DOP
+            // And make them operate on separate subsets of data
+            var parallelTasks = Enumerable.Range(1, DegreeOfParallelism)
+                                .Select(i => Task.Factory.StartNew(() => bigMultiplyBySteps(x, i), TaskCreationOptions.LongRunning)).ToArray();
+
+            // after all tasks are done...
+            Task.WaitAll(parallelTasks);
+            
+            // ... take the partial results and multiply them together
+            foreach (var partialResult in parallelTasks.Select(t => t.Result))
+            {
+                finalResult *= partialResult;
+            }
+
+            return finalResult;
+        }
+
+        public static BigInteger Combination(int items, int setIetms)
+        {
+            return Factorial(items) / (Factorial(items - setIetms) * Factorial(setIetms));
         }
     }
 }
