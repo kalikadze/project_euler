@@ -20,20 +20,23 @@ namespace euler
             
             int res = 1;
             int hilim = 200000;
-            string champernown = "";
+            StringBuilder champernown = new StringBuilder();
             int pos = 1;
+            string champerstr = null;
 
             for (int i = 1; i < hilim; i++)
             {
-                //champernown += i.ToString();
+                champernown.Append(i.ToString());
             }
+
+            champerstr = champernown.ToString();
 
             for (int i = 0; i < 7; i++)
             {
                 pos = (int)Math.Pow(10, i) - 1;
-                res *= getChamper(champernown, pos);
+                res *= getChamper(champerstr, pos);
             }
-
+            
             Console.WriteLine("Problem 040");
             Console.WriteLine(res);
             sw.Stop();
