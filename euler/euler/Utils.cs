@@ -600,6 +600,7 @@ namespace euler
 
         public static BigInteger Factorial(long x)
         {
+            //https://stackoverflow.com/questions/18911262/parallel-calculation-of-biginteger-factorial
             BigInteger finalResult = 1;
 
             // Make as many parallel tasks as our DOP

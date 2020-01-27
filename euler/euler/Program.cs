@@ -29,7 +29,7 @@ namespace euler
             //problem_012 p012 = new problem_012();
             //in Python
             //problem_014 p014 = new problem_014();
-            problem_015 p015 = new problem_015();
+            //problem_015 p015 = new problem_015();
             //problem_016 p016 = new problem_016();
             //problem_017 p017 = new problem_017();
             //problem_018 p018 = new problem_018();
@@ -47,6 +47,7 @@ namespace euler
             //problem_035 p035 = new problem_035();
             //problem_036 p036 = new problem_036();
             //problem_039 p039 = new problem_039();
+            problem_040 p040 = new problem_040();
             //problem_041 p041 = new problem_041();
             //problem_042 p042 = new problem_042();
             //problem_047 p047 = new problem_047();
